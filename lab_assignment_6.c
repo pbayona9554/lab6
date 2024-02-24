@@ -1,8 +1,22 @@
 #include <stdio.h>
 
-int search(int numbers[], int low, int high, int value) 
-{
+int search(int numbers[], int low, int high, int value) {
+
+	if (low > high) {
 	return -1;
+	}
+
+	int avg = (low + high) / 2;
+
+	if (numbers[avg] == value) {
+	return avg;
+	}
+
+	if (numbers[avg] > value) {
+	return search(numbers, low, avg - 1, value);
+	}
+
+	return search(numbers, avg + 1, high, value);
 }
 
 void printArray(int numbers[], int sz)
